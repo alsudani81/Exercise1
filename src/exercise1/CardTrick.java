@@ -6,8 +6,11 @@ package exercise1;
  * To be used as starting code in Exercise
  *
  * @author dancye
- * @author Paul Bonenfant Jan 25, 2022 
+ * @author Ali Alsudani Feb 3, 2023 
  */
+import java.util.Random;
+import java.util.Scanner;
+
 public class CardTrick {
     
     public static void main(String[] args) {
@@ -17,51 +20,77 @@ public class CardTrick {
         for (int i = 0; i < hand.length; i++) {
             Card card = new Card();
             //card.setValue(insert call to random number generator here)
+            Random random = new Random();
+            int randomValue = random.nextInt(13) + 1;
+            card.setValue(randomValue);
             // 
             //card.setSuit(Card.SUITS[insert call to random number between 0-3 here])
+            card.setSuit(Card.SUITS[random.nextInt(4)]);
+                        hand[i] = card;
             // Hint: You can use Random -> random.nextInt(n) to get a random number between 0 and n-1 (inclusive)
             //       Don't worry about duplicates at this point
         }
-
+        
         // insert code to ask the user for Card value and suit, create their card
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter the number of card from 1 to 13  : ");
+        int valueUser = input.nextInt();
+         System.out.println("Please enter the number of suit from 1 to 3 : ");
+         int suitUser = input.nextInt();
+        
+        
+        
+        
         // and search the hand here. 
         // Hint: You can ask for values 1 to 10, and then
         //       11 for jack, 12 for queen, etc. (remember arrays are 0-based though)
         //       1 for Hearts, 2 for Diamonds, etc. (remember arrays are 0-based though)
-        // 
+                boolean found = false;
+        for (Card card : hand) {
+            
+            if (card.getValue()== valueUser && card.getSuit().equals(Card.SUITS[suitUser])) {
+                found = true;
+                break;
+                }
+            }
+                if (found) {
+            printInfo();
+        } else {
+            System.out.println("Sorry, your guess is incorrect.");
+        }
+    }
+
+        
+        
         // Then loop through the cards in the array to see if there's a match.
         
         // If the guess is successful, invoke the printInfo() method below.
         
-    }
-
+    
     /**
      * A simple method to print out personal information. Follow the instructions to 
      * replace this information with your own.
-     * @author Paul Bonenfant Jan 2022
+     * @author Ali Alsudani Feb 2023
      */
     private static void printInfo() {
     
         System.out.println("Congratulations, you guessed right!");
         System.out.println();
         
-        System.out.println("My name is Paul, but you can call me prof, Paul or sir");
+        System.out.println("My name is Ali Alsudani, but you can call me Ali, or Mr.");
         System.out.println();
         
-        System.out.println("My career ambitions:");
-        System.out.println("-- Be more active on LinkedIn");
-        System.out.println("-- Have a semester with no violations of academic integrity!");
+        System.out.println("This is my info contact");
+        System.out.println("-- My address is :Canada ");
+        System.out.println("-- My Email is : alsudali@sheridancollege.ca");
 	System.out.println();	
 
         System.out.println("My hobbies:");
-        System.out.println("-- Investing");
-        System.out.println("-- Cooking");
-        System.out.println("-- Reading/Watching TV");
-        System.out.println("-- Riding my motorcycle");
+        System.out.println("-- Swiming");
+        System.out.println("-- playing football");
+        System.out.println("-- Playing Games");
+        System.out.println("-- Watching movies");
 
         System.out.println();
-        
-    
     }
-
 }
